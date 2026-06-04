@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Conceptual Quiz - Part 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .question-card {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .option-item {
+            margin-bottom: 10px;
+        }
+        .option-label {
+            display: block;
+            padding: 12px 15px;
+            background: #fff;
+            border: 2px solid #cbd5e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-label:hover {
+            background: #edf2f7;
+            border-color: #a0aec0;
+        }
+        input[type="radio"] {
+            display: none;
+        }
+        /* JS Triggered Classes */
+        .correct {
+            background-color: #c6f6d5 !important;
+            border-color: #38a169 !important;
+            color: #22543d !important;
+            font-weight: bold;
+        }
+        .incorrect {
+            background-color: #fed7d7 !important;
+            border-color: #e53e3e !important;
+            color: #742a2a !important;
+        }
+        .explanation {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #2b6cb0;
+        }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Advanced Conceptual Assessment (Questions 1 - 25)</h1>
+    <form id="quizForm">
+
+        <div class="question-card" id="q1-card">
+            <div class="question-text">1. Which of the following best describes an ambiguous scenario where classical direct observation fails, necessitating statistical inference inference rather than deterministic evaluation?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q1" value="A"> A) When the system state changes deterministically over discrete time intervals.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q1" value="B"> B) When measurement errors are entirely systematic and reproducible.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q1" value="C"> C) When latent variables confound direct observation, creating stochastic variance.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q1" value="D"> B) When the population parameters are universally known and static.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp1">
+                <strong>Explanation:</strong> Correct answer is <strong>C</strong>. Statistical inference is mandatory when direct observation is clouded by latent (hidden) variables and stochastic (random) variance, making deterministic predictions impossible.
+            </div>
+        </div>
+
+        <div class="question-card" id="q2-card">
+            <div class="question-text">2. In analytical paradigms, what is the core danger of utilizing an excessively complex model to interpret highly volatile data?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q2" value="A"> A) Drastic underfitting of the training dataset.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q2" value="B"> B) Overfitting the model to capture noise instead of the underlying signal.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q2" value="C"> C) Complete elimination of the bias-variance tradeoff.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q2" value="D"> D) Artificial reduction of data dimensionality.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp2">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Complex models applied to volatile data risk overfitting—meaning they erroneously memorize random noise as if it were a legitimate structural pattern.
+            </div>
+        </div>
+
+        <div class="question-card" id="q3-card">
+            <div class="question-text">3. When two variables demonstrate a strong non-linear monotonic relationship, which metric provides the most deceptive evaluation if applied blindly?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q3" value="A"> A) Spearman's rank correlation coefficient.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q3" value="B"> B) Pearson product-moment correlation coefficient.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q3" value="C"> C) Kendall's tau rank correlation.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q3" value="D"> D) Chi-squared test of independence.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp3">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Pearson's coefficient specifically measures *linear* relationships. For a non-linear but perfectly monotonic relationship, Pearson will give a misleadingly low score, whereas Spearman or Kendall would accurately capture the relationship.
+            </div>
+        </div>
+
+        <div class="question-card" id="q4-card">
+            <div class="question-text">4. How does the introduction of confounding variables typically disrupt the internal validity of an experimental analysis?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q4" value="A"> A) By ensuring the sample is perfectly representative of the population macrocosm.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q4" value="B"> B) By artificially inflating the true effect size without affecting the p-value.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q4" value="C"> C) By introducing alternative explanations for the observed covariance between independent and dependent variables.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q4" value="D"> D) By shifting the research structure from empirical to strictly qualitative.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp4">
+                <strong>Explanation:</strong> Correct answer is <strong>C</strong>. Confounding variables correlate with both the supposed cause and effect, leading to spurious relationships and destroying internal validity by offering alternative explanations.
+            </div>
+        </div>
+
+        <div class="question-card" id="q5-card">
+            <div class="question-text">5. What fundamental issue arises if an analyst changes the primary hypothesis *after* observing the data trends (HARKing)?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q5" value="A"> A) It eliminates Type I errors entirely.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q5" value="B"> B) It invalidates standard statistical significance thresholds by exploiting random patterns.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q5" value="C"> C) It ensures the experiment can be duplicated with identical results universally.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q5" value="D"> D) It decreases the overall variance of the dataset.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp5">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Hypothesizing After the Results are Known (HARKing) turns purely exploratory, chance findings into false confirmations, making calculated p-values deceptive.
+            </div>
+        </div>
+
+        <div class="question-card" id="q6-card">
+            <div class="question-text">6. Under what condition would the median be a decisively superior measure of central tendency compared to the mean?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q6" value="A"> A) When the distribution is perfectly symmetrical and unimodal.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q6" value="B"> B) When the dataset contains highly influential extreme outliers or heavy skewness.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q6" value="C"> C) When the data consists purely of nominal category classifications.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q6" value="D"> D) When the sample size approaches infinity.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp6">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. The mean is highly sensitive to extreme values (outliers), pulling the center toward the tail. The median is robust and uninfluenced by these extremes.
+            </div>
+        </div>
+
+        <div class="question-card" id="q7-card">
+            <div class="question-text">7. If an empirical test yields a p-value of 0.042 under a significance threshold (alpha) of 0.05, what is the precise logical implication?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q7" value="A"> A) There is a 4.2% probability that the alternative hypothesis is false.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q7" value="B"> B) The probability of observing data this extreme or more extreme, assuming the null hypothesis is true, is 4.2%.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q7" value="C"> C) The experiment has proven the null hypothesis to be absolutely impossible.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q7" value="D"> D) The effect size is guaranteed to have massive practical real-world value.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp7">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. A p-value is a conditional probability: $P(\text{Data or more extreme} \mid H_0)$. It does *not* measure the probability that a hypothesis itself is true or false.
+            </div>
+        </div>
+
+        <div class="question-card" id="q8-card">
+            <div class="question-text">8. What occurs conceptually when an investigator commits a Type II error ($\beta$)?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q8" value="A"> A) Rejecting a null hypothesis when it is completely true.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q8" value="B"> B) Failing to reject a null hypothesis when an actual effect or difference exists.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q8" value="C"> C) Improperly altering data to match a pre-conceived pattern.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q8" value="D"> D) Mistaking an ordinal scale variable for an interval scale variable.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp8">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. A Type II error is a "false negative"—failing to claim a discovery or effect when one truly exists in nature.
+            </div>
+        </div>
+
+        <div class="question-card" id="q9-card">
+            <div class="question-text">9. Which process explicitly counteracts the "File Drawer Problem," where negative or insignificant results are buried?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q9" value="A"> A) Post-hoc subgroup filtering.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q9" value="B"> B) Preregistration of study designs and open-access data repositories.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q9" value="C"> C) Increasing the alpha level from 0.05 to 0.10.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q9" value="D"> D) Relying purely on subjective anecdotal validation.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp9">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Preregistering studies forces researchers to declare their intent before collecting data, ensuring that regardless of whether the final results are positive or negative, they get tracked and shared.
+            </div>
+        </div>
+
+        <div class="question-card" id="q10-card">
+            <div class="question-text">10. Why is "Survivorship Bias" a critical flaw when evaluating retrospective historical group performance data?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q10" value="A"> A) It over-represents elements that failed early and dropped out of visibility.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q10" value="B"> B) It skews the results by only analyzing entities that passed a selection gateway, overinflating success metrics.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q10" value="C"> C) It treats qualitative observation with quantitative mathematical rigor.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q10" value="D"> D) It balances out the bias-variance conflict naturally.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp10">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Survivorship bias focuses exclusively on "survivors" (e.g., highly successful mutual funds or companies that exist today), ignoring those that went bankrupt along the way, generating an unrealistically optimistic baseline.
+            </div>
+        </div>
+
+        <div class="question-card" id="q11-card">
+            <div class="question-text">11. What distinguishes an ordinal scale from an interval scale of measurement?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q11" value="A"> A) Ordinal scales possess a true absolute zero point, whereas interval scales do not.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q11" value="B"> B) Interval scales possess clear ranking and equal, measurable distances between units; ordinal scales only preserve rank order without uniform intervals.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q11" value="C"> C) Ordinal scales can only handle continuous variables, unlike interval scales.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q11" value="D"> D) There is no structural mathematical difference between them.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp11">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. In an ordinal scale (e.g., finishing 1st, 2nd, 3rd in a race), the distance between 1st and 2nd might be 1 second, but between 2nd and 3rd it could be 50 seconds. Interval scales preserve equal metrics throughout.
+            </div>
+        </div>
+
+        <div class="question-card" id="q12-card">
+            <div class="question-text">12. In a standard Normal Distribution, approximately what percentage of data falls outside of $\pm 2$ standard deviations from the arithmetic mean?</div>
+            class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q12" value="A"> A) 68%</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q12" value="B"> B) 95%</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q12" value="C"> C) 5%</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q12" value="D"> D) 32%</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp12">
+                <strong>Explanation:</strong> Correct answer is <strong>C</strong>. According to the Empirical Rule, roughly 95% of data falls *within* $\pm 2$ standard deviations ($1.96\sigma$ precisely). Therefore, the remaining data falling *outside* this range is approximately 5%.
+            </div>
+        </div>
+
+        <div class="question-card" id="q13-card">
+            <div class="question-text">13. Which paradox emerges when a trend appears in multiple distinct groups of data but completely reverses or disappears when those groups are combined?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q13" value="A"> A) Bertrand's Paradox</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q13" value="B"> B) Simpson's Paradox</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q13" value="C"> C) Fermi's Paradox</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q13" value="D"> D) Berkson's Fallacy</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp13">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Simpson's Paradox occurs when aggregate data masks or reverses a trend that is consistently visible when data is stratified into specific groups, usually due to an unaddressed lurking variable.
+                </div>
+        </div>
+
+        <div class="question-card" id="q14-card">
+            <div class="question-text">14. What is the fundamental theoretical premise of the Central Limit Theorem (CLT)?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q14" value="A"> A) Any parent population distribution will automatically become normal as more data is added.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q14" value="B"> B) The sampling distribution of the sample mean approaches a normal distribution as sample size ($n$) becomes large, regardless of the shape of the population distribution.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q14" value="C"> C) Large sample sizes reduce systematic measurement biases to zero.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q14" value="D"> D) The sample variance will always exceed the true population variance.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp14">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. The CLT specifies that the *distribution of sample means* tends toward normality as sample size grows, even if the underlying source population is heavily skewed or non-normal.
+            </div>
+        </div>
+
+        <div class="question-card" id="q15-card">
+            <div class="question-text">15. If a regression analysis model demonstrates a high $R^2$ value but fails completely when applied to new out-of-sample data, what does this denote?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q15" value="A"> A) Exceptional model generalization capability.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q15" value="B"> B) High structural bias paired with dangerously low variance.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q15" value="C"> C) Severe overfitting to the training dataset sample.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q15" value="D"> D) Perfect multicollinearity without operational side-effects.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp15">
+                <strong>Explanation:</strong> Correct answer is <strong>C</strong>. High in-sample performance ($R^2$) paired with poor out-of-sample performance is a classic hallmark of overfitting. The model has mapped specific training quirks instead of generalizable principles.
+            </div>
+        </div>
+
+        <div class="question-card" id="q16-card">
+            <div class="question-text">16. When conducting multiple simultaneous hypothesis tests on a single dataset, what danger escalates exponentially if left unadjusted?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q16" value="A"> A) The family-wise Type I error rate inflation (false positive explosion).</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q16" value="B"> B) The Type II error rate drops to absolute zero.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q16" value="C"> C) Complete loss of degrees of freedom.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q16" value="D"> D) An artificial deflation of statistical power.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp16">
+                <strong>Explanation:</strong> Correct answer is <strong>A</strong>. If you run dozens of tests, chance alone dictates that some will look significant. This is the multiple comparisons problem, requiring adjustments like Bonferroni correction.
+            </div>
+        </div>
+
+        <div class="question-card" id="q17-card">
+            <div class="question-text">17. What does a 95% Confidence Interval for a population mean genuinely communicate?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q17" value="A"> A) There is a 95% chance that the specific calculated numeric interval contains the sample mean.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q17" value="B"> B) If we repeat the sampling process infinitely, 95% of the generated intervals will successfully encompass the true fixed population mean.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q17" value="C"> C) 95% of individual data values in the population fall squarely within that interval.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q17" value="D"> D) The true population mean changes values 5% of the time.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp17">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. The interval changes with every sample, but the population parameter is fixed. The 95% confidence refers to the reliability of the *estimation procedure* over long-run repetition.
+            </div>
+        </div>
+
+        <div class="question-card" id="q18-card">
+            <div class="question-text">18. Under what circumstance does a correlation coefficient of 0 strictly fail to prove the complete absence of a relationship between variables?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q18" value="A"> A) When the variables exhibit a perfectly linear pattern.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q18" value="B"> B) When the underlying relationship is highly curvilinear or quadratic (e.g., U-shaped).</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q18" value="C"> C) When the sample size is exceedingly large.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q18" value="D"> D) When both variables are scaled using standard Z-scores.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp18">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Linear correlation metrics (like Pearson) can equal exactly 0 even when a perfect non-linear deterministic relationship (like $Y = X^2$ centered at 0) connects the two variables.
+            </div>
+        </div>
+
+        <div class="question-card" id="q19-card">
+            <div class="question-text">19. What is the fundamental operational difference between descriptive and inferential statistics?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q19" value="A"> A) Descriptive statistics use math, while inferential statistics ignore numerical proofs.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q19" value="B"> B) Descriptive statistics summarize collected sample attributes; inferential statistics generalize patterns beyond the sample to a broader unobserved population.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q19" value="C"> C) Inferential statistics can only handle discrete numerical integers.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q19" value="D"> D) Descriptive stats require a minimum sample size of 10,000 observations.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp19">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Descriptive statistics present data summaries (mean, charts) without making claims about unmeasured cases. Inferential statistics use probability to extrapolate conclusions to larger populations.
+            </div>
+        </div>
+
+        <div class="question-card" id="q20-card">
+            <div class="question-text">20. Which term refers to the systematic distortion that occurs when people drop out of a longitudinal multi-year study over time?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q20" value="A"> A) Sampling error variance.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q20" value="B"> B) Attrition Bias (Mortality Bias).</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q20" value="C"> C) Recall confirmation bias.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q20" value="D"> D) Social desirability response bias.</label>
+                    </li>
+            </ul>
+            <div class="explanation" id="exp20">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Attrition bias occurs when the loss of participants over time is non-random, resulting in a late-stage sample that no longer mirrors the baseline starting group.
+            </div>
+        </div>
+
+        <div class="question-card" id="q21-card">
+            <div class="question-text">21. If you increase the sample size ($n$) of an experiment while keeping variance and effect size static, what happens to the Statistical Power?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q21" value="A"> A) Power decreases linearly.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q21" value="B"> B) Power increases because standard error shrinks, easing the detection of real effects.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q21" value="C"> C) Power drops to absolute zero.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q21" value="D"> D) Power remains utterly unaffected.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp21">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Larger samples decrease standard error, tightening sampling distributions and boosting statistical power ($1-\beta$), which maximizes the odds of rejecting false nulls.
+            </div>
+        </div>
+
+        <div class="question-card" id="q22-card">
+            <div class="question-text">22. Why does "Correlation does not imply Causation"?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q22" value="A"> A) Because statistical tools cannot handle more than one variable at a time.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q22" value="B"> B) Because mathematical covariance can be driven by a third unmeasured variable or reverse causality.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q22" value="C"> C) Because correlation metrics only produce fake imaginary numbers.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q22" value="D"> D) Because causation requires an infinite population dataset to prove.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp22">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. A strong correlation between $A$ and $B$ could mean $A$ causes $B$, $B$ causes $A$, or a hidden variable $C$ causes both (spurious relationship).
+            </div>
+        </div>
+
+        <div class="question-card" id="q23-card">
+            <div class="question-text">23. What property is violated if the variance of errors in a regression model is unequal across different levels of the independent predictor variable?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q23" value="A"> A) Homoscedasticity</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q23" value="B"> B) Heteroscedasticity</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q23" value="C"> C) Linearity</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q23" value="D"> D) Multcollinearity</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp23">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong> (or rather, the property of Homoscedasticity is violated, introducing Heteroscedasticity). Heteroscedasticity implies the spread of residuals changes, rendering standard errors unreliable.
+            </div>
+        </div>
+
+        <div class="question-card" id="q24-card">
+            <div class="question-text">24. What is the fundamental difference between standard deviation and standard error of the mean?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q24" value="A"> A) Standard deviation tracks sample size directly; standard error does not.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q24" value="B"> B) Standard deviation measures the dispersion of individual scores from the mean; standard error measures the variability of the sample mean itself across multiple theoretical samples.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q24" value="C"> C) They are identical mathematical terms used interchangeably.</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q24" value="D"> D) Standard error cannot be applied to normal distributions.</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp24">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. Standard deviation ($\sigma$) measures individual variation within a single dataset. Standard error ($\text{SE} = \sigma / \sqrt{n}$) quantifies how much the sample mean estimation is likely to drift.
+            </div>
+        </div>
+
+        <div class="question-card" id="q25-card">
+            <div class="question-text">25. What dangerous pitfall occurs if an analyst infers micro-level individual behaviors directly from macro-level group-aggregated data trends?</div>
+            <ul class="options-list">
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q25" value="A"> A) Exception Fallacy</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q25" value="B"> B) Ecological Fallacy</label>
+                </li>
+                <li class="option-item">
+  <label class="option-label"><input type="radio" name="q25" value="C"> C) Circular Logic Paradox</label>
+                </li>
+                <li class="option-item">
+                    <label class="option-label"><input type="radio" name="q25" value="D"> D) Automation bias</label>
+                </li>
+            </ul>
+            <div class="explanation" id="exp25">
+                <strong>Explanation:</strong> Correct answer is <strong>B</strong>. The Ecological Fallacy is a logical error where a correlation observed at a high aggregate level (e.g., a wealthy city) is wrongly assumed to apply to every individual inside that group.
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    // Correct Answer Registry Map
+    const answers = {
+        q1: 'C', q2: 'B', q3: 'B', q4: 'C', q5: 'B',
+        q6: 'B', q7: 'B', q8: 'B', q9: 'B', q10: 'B',
+        q11: 'B', q12: 'C', q13: 'B', q14: 'B', q15: 'C',
+        q16: 'A', q17: 'B', q18: 'B', q19: 'B', q20: 'B',
+        q21: 'B', q22: 'B', q23: 'B', q24: 'B', q25: 'B'
+    };
+
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const questionName = this.name;
+            const selectedValue = this.value;
+            const correctAnswer = answers[questionName];
+            const card = document.getElementById(`${questionName}-card`);
+            const explanation = document.getElementById(`exp${questionName.replace('q', '')}`);
+
+            // Get all labels in this specific card
+            const labels = card.querySelectorAll('.option-label');
+            
+            labels.forEach(label => {
+                const input = label.querySelector('input');
+                // Color correct one green
+                if (input.value === correctAnswer) {
+                    label.classList.add('correct');
+                }
+                // Color selected wrong one red
+                if (input.value === selectedValue && selectedValue !== correctAnswer) {
+                    label.classList.add('incorrect');
+                }
+            });
+
+            // Reveal explanation box
+            explanation.style.display = 'block';
+
+            // Disable further clicks on this question card
+            card.querySelectorAll('input').forEach(input => input.disabled = true);
+            card.classList.add('disabled');
+        });
+    });
+</script>
+</body>
+</html>
+              
