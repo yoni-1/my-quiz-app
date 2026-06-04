@@ -1304,6 +1304,7 @@
         q46: 'B', q47: 'B', q48: 'B', q49: 'B', q50: 'B'
     };
 
+    
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
         radio.addEventListener('change', function() {
             const questionName = this.name;
@@ -1312,23 +1313,29 @@
             const card = document.getElementById(`${questionName}-card`);
             const explanation = document.getElementById(`exp${questionName.replace('q', '')}`);
 
+            // Get all labels in this specific card
             const labels = card.querySelectorAll('.option-label');
             
             labels.forEach(label => {
                 const input = label.querySelector('input');
+                // Color correct one green
                 if (input.value === correctAnswer) {
                     label.classList.add('correct');
                 }
+                // Color selected wrong one red
                 if (input.value === selectedValue && selectedValue !== correctAnswer) {
                     label.classList.add('incorrect');
                 }
             });
 
+            // Reveal explanation box
             explanation.style.display = 'block';
+
+            // Disable further clicks on this question card
             card.querySelectorAll('input').forEach(input => input.disabled = true);
             card.classList.add('disabled');
         });
     });
 </script>
 </body>
-</html>        
+</html>
