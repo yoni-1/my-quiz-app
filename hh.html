@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Wound Care Exam - 100 Questions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .quiz-info {
+            text-align: center;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .question-card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+        }
+        .option-item {
+            background: #fff;
+            border: 2px solid #bdc3c7;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-item:hover {
+            background: #f0f0f0;
+            border-color: #95a5a6;
+        }
+        .option-item.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724 !important;
+            font-weight: bold;
+        }
+        .option-item.wrong {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24 !important;
+        }
+        .explanation-box {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95em;
+            color: #2c3e50;
+        }
+        .disabled {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Advanced Wound Care Professional Examination</h1>
+    <div class="quiz-info">Based on Ministry of Health Curriculum Level III - 100 Challenge Questions</div>
+    
+    <div id="quiz-container">
+        </div>
+</div>
+
+<script>
+const quizData = [
+    {
+        q: "Which of the following describes the very first step in wound formation that provides a potential portal of entry for infection?",
+        options: [
+            "A break in the continuity of the skin surface",
+            "The formation of devitalized necrotic tissue",
+            "The initiation of the proliferative healing process",
+            "Exudate accumulation in the interstitial spaces"
+        ],
+        correct: 0,
+        explanation: "As per the introduction of the module, a break in the continuity of the skin surface is the first step in the formation of a wound and provides a potential portal of entry for infection."
+    },
+    {
+        q: "Wound care management achieves successful outcomes primarily when using which of the following models?",
+        options: [
+            "An isolated advanced dressing modality protocol",
+            "An interdisciplinary team approach utilizing various specialties",
+            "Exclusive reliance on physical therapist intervention",
+            "Strict adherence to traditional dry gauze application"
+        ],
+        correct: 1,
+        explanation: "The text highlights that successful outcomes are achieved when an interdisciplinary team approach is used, calling on the expertise of many different clinicians."
+    },
+    {
+        q: "Which of the following is considered an advanced wound treatment modality mentioned in the text?",
+        options: [
+            "Dry-to-dry primary gauze dressing",
+            "Negative-pressure wound therapy and hyperbaric oxygen therapy",
+            "Traditional lint and synthetic cotton wool application",
+            "Mederma scar cosmetic lotion regimen"
+        ],
+        correct: 2,
+        explanation: "The module states that advanced treatments include negative-pressure wound therapy (NPWT) and hyperbaric oxygen therapy."
+    },
+    {
+        q: "What characteristic distinguishes an acute wound from a chronic wound regarding its healing pathway?",
+        options: [
+            "Acute wounds heal exclusively by secondary intention.",
+            "Acute wounds proceed typically in an orderly and timely fashion.",
+            "Acute wounds lack an initial inflammatory clinical phase.",
+            "Acute wounds present zero risk of infection if debris is present."
+        ],
+        correct: 1,
+        explanation: "Acute wounds show healing that typically proceeds in an orderly and timely fashion, whereas chronic wounds are delayed due to underlying issues."
+    },
+    {
+        q: "Which type of wound exhibits characteristics such as being a symptom of an underlying condition and healing by secondary intention?",
+        options: [
+            "Acute surgical incision wound",
+            "Chronic wound",
+            "Partial-thickness skin abrasion",
+            "Clean superficial traumatic laceration"
+        ],
+        correct: 1,
+        explanation: "According to the general overview table, chronic wounds are characterized as a symptom of an underlying condition and heal by secondary intention."
+    },
+    {
+        q: "Epidemiological studies indicated that what percentage of the general population suffers from a chronic wound?",
+        options: [
+            "One percent (1%)",
+            "Five percent (5%)",
+            "Ten percent (10%)",
+            "Twenty percent (20%)"
+        ],
+        correct: 0,
+        explanation: "Epidemiological studies cited in the textbook indicate that one percent of the population has a chronic wound."
+    },
+    {
+        q: "Of the population segment suffering from chronic wounds, what percentage has experienced the wound for more than two years?",
+        options: [
+            "Five percent (5%)",
+            "Twelve percent (12%)",
+            "Twenty percent (20%)",
+            "Fifty percent (50%)"
+        ],
+        correct: 2,
+        explanation: "The data shows that of the group with chronic wounds, some twenty percent (20%) have had the wound for more than two years."
+    },
+    {
+        q: "Which of the following represents a primary group within the clinical classification of chronic wounds?",
+        options: [
+            "Superficial dermal grazes",
+            "Leg ulcers, pressure injuries, and diabetic wounds",
+            "First-degree thermal flash burns",
+            "Clean closed simple fractures"
+        ],
+        correct: 1,
+        explanation: "Chronic wounds are classified into leg ulcers, pressure injuries, neoplasia, chronic infected wounds, and diabetic wounds."
+    },
+    {
+        q: "What is the core underlying difficulty encountered when attempting to manage any chronic wound?",
+        options: [
+            "The absolute clinical shortage of highly advanced hydrogel patches",
+            "The presence of an underlying physiological cause that must be treated",
+            "The structural location preventing an anatomical alignment",
+            "The high cost associated with baseline tap water irrigation"
+        ],
+        correct: 1,
+        explanation: "The text states: 'The difficulty in the management of any chronic wound is that there is always an underlying physiological cause of the wound which must be treated.'"
+    },
+    {
+        q: "Why might some chronic wound patients never achieve total healing despite excellent localized dressing interventions?",
+        options: [
+            "Due to basic systemic pathophysiology and inability to alter major negative factors",
+            "Because clean dressing techniques are systematically inferior to sterile packages",
+            "Because local nurses do not perform sharp debridement daily",
+            "Due to an automatic psychological rejection of modern medical adhesive tapes"
+        ],
+        correct: 0,
+        explanation: "Some patients may never heal due to the basic pathophysiology of the disease process and the clinical inability to alter major factors influencing non-healing."
+    },
+    {
+        q: "Wounds are classified structurally as partial-thickness when tissue destruction is limited to which layers?",
+        options: [
+            "The superficial epidermis layer only",
+            "The epidermis and the dermis layers",
+            "Extension into the subcutaneous adipose layer",
+            "Penetration reaching down to the deep muscular fascia"
+        ],
+        correct: 1,
+        explanation: "The text specifies: 'A wound that is limited to the epidermis and the dermis is a partial-thickness wound.'"
+    },
+    {
+        q: "A full-thickness wound is precisely defined as a wound that:",
+        options: [
+            "Involves only the stratum corneum of the skin",
+            "Extends completely beyond the dermal layers of tissue",
+            "Requires less than 24 hours to achieve primary closure",
+            "Fails to produce any metabolic serous exudate"
+        ],
+        correct: 1,
+        explanation: "The textbook explicitly states: 'A wound that extends beyond the dermal layers is considered a full-thickness wound.'"
+    },
+    {
+        q: "Which of the following is categorized directly as an example of an acute wound within the curriculum?",
+        options: [
+            "Venous stasis lower leg ulcer",
+            "A cut, graze, or burn",
+            "Stage 3 sacral pressure injury",
+            "Neuropathic plantar diabetic ulcer"
+        ],
+        correct: 1,
+        explanation: "Examples of acute wounds provided in Section 1.2 include a cut, graze, or burn."
+    },
+    {
+        q: "What is the core function of a wound dressing applied over an open skin injury?",
+        options: [
+            "To systematically permanently dry out the entire cellular bed",
+            "To form a barrier between the wound and the external environment",
+            "To substitute for systemic surgical reconstruction completely",
+            "To induce localized tissue ischemia to minimize blood loss"
+        ],
+        correct: 1,
+        explanation: "A dressing at its very basic is a covering applied over an open wound to form a barrier between the wound and the external environment."
+    },
+    {
+        q: "Which of the following is NOT listed as a vital function served by contemporary wound dressings?",
+        options: [
+            "To protect the wound from infection and trauma",
+            "To promote a moist wound environment conducive to healing",
+            "To completely eliminate the need for an interdisciplinary assessment",
+            "To absorb excess drainage from the wound bed"
+        ],
+        correct: 2,
+        explanation: "Dressings protect, promote moisture, and absorb drainage. Eliminating interdisciplinary assessment is incorrect and hazardous."
+    },
+    {
+        q: "The clinical selection of an appropriate wound dressing depends majorly on which features?",
+        options: [
+            "The anatomical and pathophysiological characteristics of the wound",
+            "The generic manufacturer's localized marketing profile",
+            "The patient's subjective choice of adhesive color patterns",
+            "The literal total nominal hours assigned to the nursing module"
+        ],
+        correct: 0,
+        explanation: "The module states: 'The choice of dressing depends on the anatomical and pathophysiological characteristics of the wound.'"
+    },
+    {
+        q: "What category do traditional products like gauze, lint, plasters, and cotton wool belong to?",
+        options: [
+            "Advanced active biosynthetic matrices",
+            "Traditional wound dressing products used for protection",
+            "Amorphous hydrogel autolytic debriders",
+            "Medicated antimicrobial negative-pressure interfaces"
+        ],
+        correct: 1,
+        explanation: "Traditional wound dressing products including gauze, lint, plasters, bandages, and cotton wool are dry and used for protecting the wound from contamination."
+    },
+    {
+        q: "What is the guiding foundational principle for clinicians when choosing a correct wound dressing?",
+        options: [
+            "To maintain an environment conducive to moist wound healing",
+             "To ensure the wound bed is kept completely dry and exposed to air",
+            "To maximize the adherence of the bandage to the raw nerve endings",
+            "To avoid the use of non-adherent wet dressings entirely"
+        ],
+        correct: 0,
+        explanation: "The guiding principle is to maintain an environment conducive to moist wound healing, because 'a dry cell is a dead cell'."
+    },
+    {
+        q: "What biological phrase is used in the module to emphasize avoiding complete wound desiccation?",
+        options: [
+            "A moist cell is an infected cell",
+            "A dry cell is a dead cell",
+            "A soupy bed is a sterile bed",
+            "A scarred dermis is an immune dermis"
+        ],
+        correct: 1,
+        explanation: "The text directly reads: 'In simple terms, a dry cell is a dead cell and will hinder rather than aid the progression of the wound.'"
+    },
+    {
+        q: "When a clinician observes that a wound has excessive, high-volume drainage, what dressing action is required?",
+        options: [
+            "An absorptive dressing will be required",
+            "An amorphous hydrogel must be heavily added",
+            "The wound should be tightly packed with dry cotton wool patches",
+            "Immediate application of localized high-heat exposure"
+        ],
+        correct: 0,
+        explanation: "The module states: 'Moist does not mean soupy. If the wound has too much drainage, then an absorptive dressing will be required.'"
+    },
+    {
+        q: "If a comprehensive wound assessment reveals structural undermining or deep tunneling, what technique is necessary?",
+        options: [
+            "Superficial transparent adhesive sealing",
+            "Packing of the wound cavity will be needed",
+            "A regular non-adherent dry plaster application",
+            "Complete application of tight circular elastic tourniquets"
+        ],
+        correct: 1,
+        explanation: "The textbook explicitly directs: 'If there is undermining or tunneling, packing will be needed.'"
+    },
+    {
+        q: "Which type of medical dressing is recommended globally for all types of wounds as per the module's bandwidth?",
+        options: [
+            "Gauze sponge and gauze bandage rolls",
+            "Highly expensive autolytic bio-engineered skin grafts",
+            "Strictly wet-to-dry chemical solutions",
+            "Mederma localized cosmetic ointment only"
+        ],
+        correct: 0,
+        explanation: "Under the lists of bandages, Gauze sponge and Gauze bandage roll are listed with the annotation: 'used for all wounds'."
+    },
+    {
+        q: "What level of hygiene technique is typically evaluated as usually sufficient for general wound dressing changes?",
+        options: [
+            "Ultra-sterile surgical theater isolation technique",
+            "Clean technique",
+            "No hand hygiene barrier technique",
+            "Chemical chemical sterilization immersion"
+        ],
+        correct: 1,
+        explanation: "The text outlines under techniques of wound management: 'Clean technique is usually sufficient. Pain medication may be required.'"
+    },
+    {
+        q: "For a completely clean, granulating wound, which dressing type is best suited to promote healing?",
+        options: [
+            "A wet-to-dry aggressive mechanical technique",
+            "A wet-to-wet or ointment-based dressing",
+            "A completely dry adhesive plaster left for weeks",
+            "An expensive mechanical sharp debridement session"
+        ],
+        correct: 1,
+        explanation: "The text says: 'For a clean wound, it is best to use a wet-to-wet or ointment-based dressing' to preserve the delicate tissues."
+    },
+    {
+        q: "When is the specific 'wet-to-dry' dressing technique indicated for a patient's wound care?",
+        options: [
+            "When the wound is clean and requires zero intervention",
+            "For a wound in need of debridement until it is clean",
+            "Exclusively for superficial first-degree environmental grazes",
+            "When treating intact, dry eschar in terminal illness"
+        ],
+        correct: 1,
+        explanation: "The module advises: 'For a wound in need of debridement the wet-to-dry technique should be done until the wound is clean'."
+    },
+    {
+        q: "What is a mandatory clinical prerequisite before dressings can successfully heal a wound covered with thick necrotic tissue?",
+        options: [
+            "The necrotic tissue must be sharply debrided",
+            "The wound must be left exposed to dry room air for 72 hours",
+            "Immediate coverage with basic transparent adhesive tape",
+            "Application of standard dry cotton wool balls"
+        ],
+        correct: 0,
+        explanation: "The text specifies: 'For a wound covered with necrotic tissue, dressings cannot take the place of mechanical debridement. When present, necrotic tissue must be sharply debrided.'"
+    },
+    {
+        q: "Dry, sterile dressing (dry-to-dry) is most often clinically utilized for wounds healing by which mechanism?",
+        options: [
+            "Primary intention",
+            "Secondary intention",
+            "Tertiary delayed intention",
+            "Autolytic chronic granulation"
+        ],
+        correct: 0,
+        explanation: "The text explicitly states: 'This kind of dressing [Dry, sterile dressing] is most often used for wounds healing by primary intention.'"
+    },
+    {
+        q: "What is the primary physiological mechanism by which a wet-to-dry dressing achieves debridement during removal?",
+        options: [
+            "Chemical dissolution of cells by specialized modern solutions",
+            "The dressing dries out and pulls off the embedded debris when removed",
+            "Active biologic absorption by modern foam layers",
+            "Direct continuous irrigation through deep automated tubing"
+        ],
+        correct: 1,
+        explanation: "According to the description: 'The dressing is allowed to dry out and when it is removed it pulls off the debris.'"
+    },
+    {
+        q: "What is the recommended ideal frequency for performing a wet-to-dry dressing change on a dirty wound requiring active debridement?",
+        options: [
+            "Once every alternative week",
+            "Exactly 1-2 times per day",
+            "Ideally, 3-4 times per day",
+            "Continuous application without removal for 7 days"
+        ],
+        correct: 2,
+        explanation: "The module states that for wet-to-dry dressings on a wound in need of debridement, it should ideally be performed 3-4 times per day."
+    },
+    {
+        q: "What is the primary clinical indication for using a 'wet-to-wet' dressing regimen?",
+        options: [
+            "To mechanically tear away thick adhered dead eschar matrices",
+            "To keep a clean wound clean and prevent build-up of exudates",
+            "To dry out a heavily draining 'soupy' diabetic foot ulcer",
+            "To provide a rigid structural skeletal immobilization frame"
+        ],
+        correct: 1,
+        explanation: "The module states that the indication for a wet-to-wet dressing is 'To keep a clean wound clean and prevent build-up of exudates.'"
+    },
+    {
+        q: "What should a nurse do if a wet-to-wet dressing begins to dry out prematurely over the wound bed?",
+        options: [
+            "Rip the gauze off rapidly to achieve mechanical debridement",
+            "Pour sterile saline over the gauze to keep it continuously moist",
+            "Apply a thick dry layer of traditional cotton wool directly over it",
+            "Discontinue the entire procedural care plan immediately"
+        ],
+        correct: 1,
+        explanation: "The textbook explicitly directs: 'If the dressing gets too dry, pour saline over the gauze to keep it moist.'"
+    },
+    {
+        q: "When applying an antibiotic ointment to a clean wound, what is the correct technical application protocol?",
+        options: [
+            "Apply a massive thick layer filling the entire anatomical defect",
+            "Apply a thin layer and cover it with dry gauze",
+            "Rub the ointment forcefully into the deep sensory nerves",
+            "Mix the ointment with dry gauze fibers before application"
+        ],
+        correct: 1,
+        explanation: "The technique specified is: 'Apply ointment to the wound- not a thick layer, just a thin layer is enough. Cover with dry gauze.'"
+    },
+    {
+        q: "What is the baseline comparative value of the initial wound assessment performed by a clinician?",
+        options: [
+            "It serves as the baseline against which all future assessments will be compared",
+            "It provides a secondary financial record for hospital administration",
+            "It completely replaces the need for any subsequent physical exams",
+            "It determines the total nominal duration of the academic year"
+        ],
+        correct: 0,
+        explanation: "The initial assessment is particularly important because it is the baseline against which all future assessments will be compared."
+    },
+    {
+        q: "Which healthcare professionals are authorized to perform a comprehensive wound assessment as per the textbook parameters?",
+        options: [
+            "Only an advanced practice specialist surgeon",
+            "A nurse, an advanced practice nurse, a physical therapist, or a physician",
+            "Exclusively nonprofessional home family caregivers",
+            "Any administrative hospital staff member"
+        ],
+        correct: 1,
+        explanation: "The book states: 'A wound assessment can be done by a nurse, an advanced practice nurse, a physical therapist, or a physician with required knowledge.'"
+    },
+    {
+        q: "What is the most critical imperative when comparing serial ongoing wound assessments?",
+        options: [
+            "To catch and address subtle signs of deterioration immediately",
+            "To change the selected dressing brand at every single visit",
+            "To increase the pain medication dose automatically by default",
+            "To transition all clean wounds to wet-to-dry debridement"
+        ],
+        correct: 0,
+        explanation: "It is imperative that changes in the wound, especially any subtle signs of deterioration, are caught and addressed immediately to prevent complications."
+    },
+    {
+        q: "Which of the following clusters completely represents the classic signs of a localized wound infection?",
+        options: [
+            "Numbness, desiccation, fading scar, and localized coldness",
+            "Fever, pus, abscess, abnormal smell, cellulitis, and persistent inflammation",
+            "Granulation tissue, itching, tingling, and mild local erythema",
+            "Epithelialization, high self-esteem, comfort, and zero drainage"
+        ],
+        correct: 1,
+        explanation: "The classic signs listed in Section 1.4 are: Fever, Pus, Abscess, Abnormal smell, Cellulitis, and Persistent inflammation with an exudate."
+    },
+    {
+        q: "When describing the anatomical location of a wound, which terminology combinations should a professional use?",
+        options: [
+            "Top, bottom, upper corner, and side positions",
+            "Proximal, distal, medial, lateral, anterior, posterior, right, left",
+            "Inside the hole, outside the skin, near the bone structure",
+            "The exact page number and module title indices"
+        ],
+        correct: 1,
+        explanation: "The text emphasizes professional anatomical descriptors: proximal, distal, medial, lateral, anterior, posterior, right, left."
+    },
+    {
+        q: "Wound shape is clinically significant during an assessment because it helps identify which parameter?",
+        options: [
+            "The exact cost of the required alginate dressing patch",
+            "The etiology (cause) of the wound",
+            "The exact age of the patient's immune function status",
+            "The chemical concentration of the irrigation solution"
+        ],
+        correct: 1,
+        explanation: "The textbook explicitly notes: 'The shape of the wound can be useful in identifying the etiology of the wound.'"
+    },
+    {
+        q: "Chronic lower extremity wounds that present with a round, 'punched out' clinical appearance are typically caused by:",
+        options: [
+            "Severe underlying chronic venous disease",
+            "Problems with arterial circulation to the affected leg",
+            "Superficial mechanical friction from synthetic cotton wool",
+            "Normal physiologic healing pathways via secondary intention"
+        ],
+        correct: 1,
+        explanation: "The text explicitly states: 'wounds on a lower extremity that are round and have what is called a \"punched out\" appearance are typically caused by problems with arterial circulation'."
+    },
+    {
+        q: "Wounds that display highly irregular shapes on the lower extremity are typically associated with which disease process?",
+        options: [
+            "Arterial occlusive disease",
+            "Venous disease",
+            "Acute high-velocity gunshot trauma",
+            "Intact dry sterile primary alignment"
+        ],
+        correct: 1,
+        explanation: "The textbook clarifies that chronic lower extremity wounds 'that are irregular in shape are associated with venous disease.'"
+    },
+    {
+        q: "What unit of measurement and tool must be used to accurately record the size of a wound during a professional exam?",
+        options: [
+            "Inches, measured via an uncalibrated elastic ribbon tape",
+            "Centimeters, using a disposable plastic or paper ruler",
+            "Millimeters, estimated visually from a distance without physical tools",
+            "Percentage of body area, calculated via the rule of nines only"
+        ],
+        correct: 1,
+        explanation: "The textbook states: 'Wounds are measured in centimeters using a disposable plastic or paper ruler.'"
+    },
+    {
+        q: "How is the true depth of a deep wound bed precisely and safely gauged during an objective assessment?",
+        options: [
+            "By inserting a standard metallic surgical scalpel into the tissue floor",
+            "By gently placing a sterile cotton-tipped applicator into the wound bed and marking it",
+            "By pouring fluid into the hole until it completely overflows the borders",
+            "By utilizing a subjective visual estimation under dim lightning conditions"
+        ],
+        correct: 1,
+        explanation: "Wound depth is gauged by gently placing a sterile cotton-tipped applicator into the wound bed and marking at the point where it is even with the surface of the skin."
+    },
+    {
+      q: "What must a nurse do when providing individualized instructions to a nonprofessional family caregiver regarding home wound care?",
+        options: [
+            "Provide exclusively spoken instructions to avoid paper waste",
+            "Provide demonstrations and instructions in multiple forms (both written and spoken)",
+            "Require the caregiver to memorize the entire Level III 83-hour curriculum",
+            "Instruct them to perform sharp mechanical debridement daily at home"
+        ],
+        correct: 1,
+        explanation: "The curriculum states: 'Demonstrations of wound care should be available to family caregivers in multiple forms (both written and spoken instructions, for example).'"
+    },
+    {
+        q: "When is the absolute ideal clinical time to actively engage and educate family caregivers regarding home care procedures?",
+        options: [
+            "Right at the exact millisecond of official hospital discharge clearance",
+            "While the nurse is actively performing wound care in the hospital setting",
+            "Two weeks after the patient has successfully returned to their home",
+            "During the initial emergency room resuscitation phase"
+        ],
+        correct: 1,
+        explanation: "The ideal time to engage family caregivers, if they are available, is while the nurse is performing wound care in the hospital."
+    },
+    {
+        q: "Discussions regarding complex wound care after hospital discharge should commence at what stage of admission?",
+        options: [
+            "On the night before scheduled discharge to save administrative hours",
+            "As early as possible to give the family caregiver time to process information",
+            "Only after a clinical infection complication manifests at home",
+            "When the patient achieves 100% complete wound epithelialization"
+        ],
+        correct: 1,
+        explanation: "The text states: 'Discussions about wound care after hospitalization should start as early as possible to give the family caregiver time to process this information.'"
+    },
+    {
+        q: "What phrase summarizes the philosophical core of the holistic approach to wound care assessment?",
+        options: [
+            "Treating the hole in the patient, not the whole patient",
+            "Considering the 'whole patient' and not just the 'hole in the patient'",
+            "Focusing strictly on the local biochemical dressing patch specifications",
+            "Prioritizing high financial cost reduction over structural comfort levels"
+        ],
+        correct: 1,
+        explanation: "The beautifully stated core principle of the holistic approach is: 'With this approach, you are considering the \"whole patient\" and not just the \"hole in the patient\".'"
+    },
+    {
+        q: "A comprehensive holistic wound assessment must evaluate which specific triad components?",
+        options: [
+            "The wound bed, the wound edges, and the peri-wound skin",
+            "The hospital floor plan, the room temperature, and lighting",
+            "The patient's generic age, gender, and national demographic data",
+            "The nominal module hours, code version, and developer email"
+        ],
+        correct: 0,
+        explanation: "A comprehensive wound assessment includes assessment of the wound bed, the wound edges, the periwound skin, and patient pain levels."
+    },
+    {
+        q: "How is the clinical state of patient 'comfort' officially characterized in the practice of nursing care?",
+        options: [
+            "By the total complete absence of any medical team members in the vicinity",
+            "By the satisfaction of needs, making the person feel strong, safe, supported, and cared for",
+            "By achieving complete surgical closing within a nominal duration of 48 hours",
+            "By maintaining a completely dry, highly desiccated localized wound bed surface"
+        ],
+        correct: 1,
+        explanation: "The module states: 'It [comfort] is characterized by the satisfaction of one's needs, by the person feeling strong, safe, supported and cared for.'"
+    },
+    {
+        q: "Which of the following is an expected, normal sensation that patients should be educated to anticipate during a normal healing process?",
+        options: [
+            "Foul-smelling thick green purulent overflow across the skin",
+            "The wound area may tingle, feel strange, or itch",
+            "Sudden progressive high-grade systemic fever spikes",
+            "Immediate permanent structural tissue color blackening"
+        ],
+        correct: 1,
+        explanation: "Patients should be told that as a normal occurrence, 'The wound area may tingle, feel strange, or itch' and these feelings can be lessened by light rubbing."
+    },
+    {
+        q: "How long can normal tingling, strange feelings, or itching persist in a healing full-thickness wound area?",
+        options: [
+            "For a maximum duration of exactly 48 hours post-injury",
+            "They may show up for many months, but should be gone within a year",
+            "Permanently for the entire lifetime without any subjective improvement",
+            "Only during the active 3-day short inflammatory physical phase"
+        ],
+        correct: 1,
+        explanation: "The module informs that 'These feelings may show up for many months, but they should be gone within a year.'"
+    },
+    {
+        q: "Why might a deep full-thickness wound exhibit prolonged numbness or lessened sensation distal to the injury site?",
+        options: [
+            "Because the clean technique used by the nurse was structurally flawed",
+            "Deeper wounds may have injured some sensory nerves",
+            "Due to an immediate allergic reaction to standard saline solutions",
+            "Because the patient did not receive Mederma cream application"
+        ],
+        correct: 1,
+        explanation: "The module notes: 'Deeper wounds may have injured some sensory nerves, so there may be numbness or lessened sensation distal to the wound.'"
+    },
+    {
+        q: "What is an absolute medical reality concerning all full-thickness wounds regarding aesthetic structural outcomes?",
+        options: [
+            "They heal perfectly without leaving any trace of structural tissue marks",
+            "All full-thickness wounds, no matter how artfully repaired, leave a scar",
+            "They only leave a scar if a chronic diabetic condition is present",
+            "Scars will fade completely to zero visibility within 14 operational days"
+        ],
+        correct: 1,
+        explanation: "The module emphasizes a realistic expectation: 'All full-thickness wounds, no matter how artfully repaired, leave a scar.'"
+    },
+    {
+        q: "What is the typical normal chronological progression of a healing full-thickness scar's appearance?",
+        options: [
+            "It is completely invisible initially and then darkens after 5 years",
+            "Typical scars get darker and redder before they eventually fade",
+            "It turns instantly bright white before changing into a deep yellow color",
+            "It maintains an identical color to the surrounding intact skin from day one"
+        ],
+        correct: 1,
+        explanation: "The educational material states: 'Typical scars get darker and redder before they eventually fade. It can be a year or more before they reach final appearance.'"
+    },
+    {
+        q: "What type of local reaction might a clinician observe if topical tissue glue was utilized for wound repair?",
+        options: [
+            "A systemic life-threatening anaphylactic shock by default",
+            "A mild local inflammatory reaction",
+            "Complete destruction of all adjacent deep sensory nerve pathways",
+            "Immediate autolytic conversion into thick yellow necrotic slough"
+        ],
+        correct: 1,
+        explanation: "The text explicitly notes: 'If tissue glue has been used, it may cause a mild local inflammatory reaction.'"
+    },
+    {
+        q: "The term 'patient engagement' in modern centered wound care refers primarily to:",
+        options: [
+            "The financial contract signed between the client and the hospital board",
+            "The collaboration where patients willingly take ownership of their own health",
+            "Restricting the patient's family from asking any complex clinical questions",
+            "Transferring 100% of legal diagnostic responsibilities to the patient's relatives"
+        ],
+        correct: 1,
+        explanation: "Patient engagement refers to the collaboration between patients and providers, aiming to have patients willingly take ownership for their own health."
+    },
+    {
+        q: "Which of the following is NOT listed as one of the 'Five Important Requirements' that a nurse must follow in wound dressing?",
+        options: [
+            "Decrease the pain and apply compression for hemostasis",
+            "Protect the wound from the environment and from soiling with body fluids",
+            "Immobilize the injured body part and promote wound healing",
+            "Maximize systemic glucose concentration levels regardless of diabetes status"
+        ],
+        correct: 3,
+        explanation: "The 5 requirements focus on pain reduction, hemostasis, environmental protection, protecting from fluid soiling, immobilization, and promoting healing. Maximizing glucose is incorrect."
+    },
+    {
+        q: "What is the primary care goal for a terminal wound patient who is near the very end of their life span?",
+        options: [
+            "Achieving rapid complete anatomical closure and scar remodeling",
+            "To provide comfort, reduce pain, control odor, and relieve symptoms",
+            "Performing aggressive mechanical debridement 4 times per day",
+            "Applying highly expensive advanced active biosynthetic skin substitutes"
+        ],
+        correct: 1,
+        explanation: "If a patient is near the end of life, the goal is not to heal the wound, but to provide comfort, reduce pain, control odor, and relieve symptoms causing distress."
+    },
+    {
+        q: "How is the fundamental microbiological concept of 'Asepsis' precisely defined in medical wound care?",
+        options: [
+            "The complete absence of pathogenic (harmful) organisms",
+            "The presence of non-adherent wet-to-dry chemical structures",
+            "The mechanical reduction of odor parameters through ventilation",
+            "The documentation of baseline findings in a standard nursing report"
+        ],
+        correct: 0,
+        explanation: "The technical definition provided in Section 3.6 states: 'Asepsis is defined as the absence of pathogenic (harmful) organisms.'"
+    },
+    {
+        q: "What is a core operational principle of performing a validated aseptic technique on a susceptible wound site?",
+        options: [
+            "Increasing the movement and physical activity of personnel in the room",
+            "Keeping the exposure of a susceptible site to a absolute minimum",
+            "Utilizing sterile packs regardless of their expiration stamp date",
+            "Avoiding the use of any physical personal protective equipment (PPE)"
+        ],
+        correct: 1,
+        explanation: "The core principles listed include: 'Keeping the exposure of a susceptible site to a minimum' and reducing activity in the immediate vicinity."
+    },
+    {
+        q: "Which of the following is an intrinsic factor that directly wields an internal systemic influence on wound healing rates?",
+        options: [
+            "Mechanical physical stress on tissue",
+            "Health status, immune function, diabetes, age, and nutritional status",
+            "Environmental ambient room temperature",
+            "Chemical stress from external industrial antiseptics"
+        ],
+        correct: 1,
+        explanation: "Intrinsic factors originate inside the body, including health status, immune function, diabetes, age, body build, and nutritional status."
+    },
+    {
+        q: "Extrinsic factors that affect wound healing speed are defined as factors that:",
+        options: [
+            "Originate exclusively from the internal genetic code sequence",
+            "Wield their influence from the outside (environmental, cultural, lifestyle)",
+            "Are completely unrelated to wound bed bacterial colonization",
+            "Can only be altered via sharp surgical operational methods"
+        ],
+        correct: 1,
+        explanation: "The book states: 'Extrinsic factors wield their influence from the outside (i.e., they are environmental, cultural, or related to lifestyle).'"
+    },
+    {
+        q: "Which group of variables entirely consists of extrinsic factors affecting tissue repair?",
+        options: [
+            "Age, diabetes condition, genetic build, and psychological status",
+            "Mechanical stress, debris, temperature, desiccation, maceration, and infection",
+            "Immune system state, nutritional cachexia, and congenital cellular defects",
+            "None of the options represent purely extrinsic variables"
+        ],
+        correct: 1,
+        explanation: "Mechanical stress, debris, temperature, desiccation, maceration, infection, chemical stress, and medications are listed explicitly as extrinsic factors."
+    },
+    {
+        q: "What does the term 'Debridement' scientifically mean within the scope of wound bed preparation?",
+        options: [
+            "The application of standard decorative adhesive plasters over a skin tear",
+            "The removal of dead, devitalized, or non-viable tissue from a wound",
+            "The measurement of length and width parameters using paper scales",
+            "The documentation of the patient's spiritual history background"
+        ],
+        correct: 1,
+        explanation: "The module summary states: 'Debridement is removal of dead tissue from the wound, and it is an important factor in wound bed preparation.'"
+    },
+    {
+        q: "For which patient condition would aggressive local debridement NOT be selected as the primary treatment of choice?",
+        options: [
+            "An acute contaminated gunshot wound with debris",
+            "Intact, dry eschar covering the wound of a terminally ill patient",
+            "A heavily infected diabetic foot ulcer containing thick slough tissue",
+            "A chronic lower leg venous ulcer with high purulent exudate"
+        ],
+        correct: 1,
+        explanation: "The text states: 'For example, debridement would not be the treatment of choice for intact, dry eschar covering the wound of a terminally ill patient.'"
+    },
+    {
+        q: "What are the three canonical physiological phases of the normal wound healing process?",
+        options: [
+            "Primary, Secondary, and Tertiary intentions",
+            "Inflammatory (destructive), Proliferative (regenerative), and Maturation (reparative)",
+            "Swabbing, Cleansing, and Final documentation",
+            "Intrinsic, Extrinsic, and Holistic approaches"
+        ],
+        correct: 1,
+        explanation: "The book explicitly names the three distinct wound healing phases: Inflammatory (destructive), Proliferative (regenerative), and Maturation (reparative)."
+    },
+    {
+        q: "According to Self-Check 1, which of the following represents a cardinal sign of local infection?",
+        options: [
+            "Fever, Pus, and Abscess",
+            "Tingling, Itching, and Scarring",
+            "Desiccation, Maceration, and Compression",
+            "Granulation, Epithelialization, and Asepsis"
+        ],
+        correct: 0,
+        explanation: "Self-Check 1 explicitly includes 'Fever, Pus, Abscess' (Option D - All) as cardinal signs of wound clinical infection."
+    },
+    {
+        q: "Which factors listed in the text can specifically delay or slow down the vital Inflammatory phase of healing?",
+        options: [
+            "Presence of foreign material, necrotic tissue, and clinical infection",
+            "Frequent application of sterile saline irrigation washes",
+            "Maintaining a moist biological cellular environment",
+            "Providing adequate systemic protein and caloric support"
+        ],
+        correct: 0,
+        explanation: "As per Self-Check 1 Multiple Choice question 2, factors slowing the inflammatory phase include presence of foreign material, necrotic tissue, and clinical infection."
+    },
+    {
+        q: "In the curriculum's Matching evaluation, how is 'Sanguineous' drainage characterized textually?",
+        options: [
+            "Clear watery drainage with no blood or pus present",
+            "Bright red, bloody drainage",
+            "Thick, cloudy drainage that varies from tan to dark brown",
+            "Watery drainage that is pink to pale red in color"
+        ],
+        correct: 1,
+        explanation: "Sanguineous drainage is defined as bright red, bloody drainage indicating active capillary disruption."
+    },
+    {
+        q: "How is 'Serous' drainage precisely defined in the wound assessment guide?",
+        options: [
+            "Bright red, thick vascular output",
+            "Clear drainage with no blood or pus present",
+            "Thick cloudy output changing to a dark green color",
+            "Pinkish pale fluid filled with cellular debris matrices"
+        ],
+        correct: 1,
+        explanation: "Serous drainage is defined textually as clear drainage with no blood or pus present."
+    },
+    {
+      q: "What type of wound drainage is described as watery, pink to pale red in color?",
+        options: [
+            "Purulent",
+            "Serosanguineous",
+            "Serous",
+            "Sanguineous"
+        ],
+        correct: 1,
+        explanation: "Serosanguineous drainage consists of a mix of clear serous fluid and red blood cells, yielding a pink to pale red watery appearance."
+    },
+    {
+        q: "How is 'Purulent' exudate characterized during an objective assessment of a wound?",
+        options: [
+            "Clear fluid indicating excellent baseline replication",
+            "Thick, cloudy drainage that varies in color from tan to dark brown",
+            "Bright red fluid filled with active macro-vascular clotting",
+            "Completely sterile liquid presenting no distinctive ambient odor"
+        ],
+        correct: 1,
+        explanation: "Purulent drainage signifies an active infection or heavy white blood cell presence, described as thick, cloudy drainage varying from tan to dark brown."
+    },
+    {
+        q: "What risk factor is highlighted for an individual suffering from a long-standing chronic non-healing wound?",
+        options: [
+            "Mental health issues including anxiety and depression from social isolation",
+            "An automatic genetic transformation of normal baseline skin cell arrays",
+            "A total physiological complete immunity to any future external bacteria",
+            "An immediate rapid structural increase in baseline bone density levels"
+        ],
+        correct: 0,
+        explanation: "The text highlights that 'A person with a chronic wound is also at risk of mental health issues including anxiety and depression resulting from social isolation'."
+    },
+    {
+        q: "How can a chronic wound act as a severe family stressor according to Section 2.4?",
+        options: [
+            "By directly forcing the entire household to learn surgical operation procedures",
+            "By altering a member's mobility, self-esteem, and role structure in the family",
+            "By automatically decreasing the total atmospheric temperature of the household",
+            "By eliminating the absolute requirement for any daily external financial resources"
+        ],
+        correct: 1,
+        explanation: "A chronic wound can alter a family member's mobility, self-esteem, and role in the family, thereby altering the family structure and role functions."
+    },
+    {
+        q: "What psychological consequences are linked to high volumes of wound exudate or severe pain?",
+        options: [
+            "Stress, sleep disturbances, negative mood, and social isolation",
+            "Immediate rapid elevation of cognitive performance scores",
+            "A structural reduction in baseline systemic medication requirements",
+            "Spontaneous autolytic clearing of all non-viable tissue matrices"
+        ],
+        correct: 0,
+        explanation: "The module notes: 'The psychological consequences of having a wound may include stress, sleep disturbances, negative mood and social isolation.'"
+    },
+    {
+        q: "What negative feedback loop can anxiety, depression, and psychological stress cause to the patient?",
+        options: [
+            "They can adversely affect the wound healing process itself",
+            "They spontaneously speed up the cellular proliferative regenerative phase",
+            "They automatically achieve autolytic chemical debridement without dressings",
+            "They systematically reduce the cardinal signs of clinical infection to zero"
+        ],
+        correct: 0,
+        explanation: "Evidence cited within the text explicitly suggests that anxiety, depression, and stress can adversely affect the physiological wound healing process."
+    },
+    {
+        q: "Which theme represents a core caregiver comfort need identified within the training material?",
+        options: [
+            "The need to avoid any communication with professional hospital staff",
+            "The need to understand, need for self-efficacy, and need for resources",
+            "The requirement to utilize uncalibrated paper tools exclusively",
+            "The restriction of patient comfort parameters to positioning protocols"
+        ],
+        correct: 1,
+        explanation: "Themes describing caregivers' comfort needs include the need to understand, need for self-efficacy, need to derive meaning, and need for resources/support."
+    },
+    {
+        q: "What non-pharmacological interventions are suggested to assist with a wound patient's pain management?",
+        options: [
+            "Aggressive daily sharp debridement without any local clean cleansing steps",
+            "Positioning, back massage, relaxation, guided imagery, and distraction",
+            "Keeping the wound bed completely dry and exposed to high room draft speeds",
+            "Forcing the patient into structural social isolation protocols immediately"
+        ],
+        correct: 1,
+        explanation: "Non-pharmacological pain management methods listed include positioning, back massage, relaxation, guided imagery, and distraction."
+    },
+    {
+        q: "What administrative action must a nurse perform immediately before and after implementing a pain intervention?",
+        options: [
+            "Report and document information about the pain and the method used",
+            "Alter the primary medical diagnostic code version on the module sheet",
+            "Change the structural type of bandage tape to a gel patch framework",
+            "Perform a mandatory continuous 83-hour laboratory performance test"
+        ],
+        correct: 0,
+        explanation: "The text specifies: 'Remember to report and document the information about the pain before and after the intervention and which method was used'."
+    },
+    {
+        q: "What does the abbreviation 'PPE' stand for within the acronym guide of the curriculum?",
+        options: [
+            "Primary Physical Epithelialization",
+            "Personal Protective Equipment",
+            "Partial Pressure Exudate",
+            "Professional Patient Engagement"
+        ],
+        correct: 1,
+        explanation: "The acronym guide on Page vi defines PPE as Personal Protective Equipment."
+    },
+    {
+        q: "What does the term 'LAP test' refer to within the module's instructional framework?",
+        options: [
+            "Local Arterial Perfusion evaluation",
+            "Learning Activity Performance test",
+            "Lateral Abscess Pressure verification",
+            "Longitudinal Alignment Protocol"
+        ],
+        correct: 1,
+        explanation: "The acronym guide defines the LAP test as the Learning Activity Performance test used to evaluate the trainee's hand-on skills."
+    },
+    {
+        q: "A wound that is highly limited strictly to the epidermal and upper dermal layers represents a:",
+        options: [
+            "Full-thickness injury matrix",
+            "Partial-thickness wound",
+            "Complex deep fascia structural defect",
+            "Neoplastic invasive carcinogenesis block"
+        ],
+        correct: 1,
+        explanation: "By clinical textbook definition, a wound limited strictly to the epidermis and dermis is classified as a partial-thickness wound."
+    },
+    {
+        q: "What is the core target of providing professional care that fully supports the 'dignity' of an individual?",
+        options: [
+            "Focusing on the value of the individual and supporting their self-respect",
+            "Making rapid assumptions about how they prefer to be treated to save time",
+            "Ignoring their personal views if they conflict with hospital financial plans",
+            "Restricting their structural privacy spaces during open procedural exams"
+        ],
+        correct: 0,
+        explanation: "Dignity in care means providing care that supports the self-respect of the person, recognizing their capacities, and focusing on individual value."
+    },
+    {
+        q: "Which parameter is paramount specifically when managing complex diabetic chronic ulcers?",
+        options: [
+            "Systemic glucose control, debridement of nonviable tissue, and perfusion maintenance",
+            "Keeping the blood glucose levels as high as possible to feed the cells",
+            "Avoiding any form of wound swabbing or mechanical cleaning irrigation",
+            "Relying exclusively on dry gauze dressings applied once every single week"
+        ],
+        correct: 0,
+        explanation: "For diabetic ulcers, the text dictates that 'systemic glucose control, debridement of nonviable tissue, and maintenance of adequate extremity perfusion is paramount.'"
+    },
+    {
+        q: "What foundational step must precede any proper wound management care plan adjustments?",
+        options: [
+            "Wound assessment",
+            "Sharp surgical total margin excision",
+            "The application of cosmetic Mederma skin lotions",
+            "The calculation of total developer mobile phone numbers"
+        ],
+        correct: 0,
+        explanation: "The module clearly asserts: 'Wound assessment is the first and foundation step of proper wound management.'"
+    },
+    {
+        q: "When cleansing and irrigating a wound bed, what operational boundary must be preserved?",
+        options: [
+            "The irrigation must be performed without causing irritation to the tissue",
+            "The solution must be applied at a boiling thermal degree level",
+            "The clinician must use a highly acidic commercial solvent solution",
+            "The wound bed must be scrubbed until extensive bleeding occurs"
+        ],
+        correct: 0,
+        explanation: "The guidelines direct clinicians to: 'Cleanse and irrigate the wound per its assessment, without causing irritation.'"
+    },
+    {
+        q: "What technique should be performed on a dirty wound to remove deep embedded debris layers?",
+        options: [
+            "Swab the wound with gauze or a similar product and irrigate",
+            "Leave the wound completely covered with air-tight dry plasters",
+            "Apply a thick continuous layer of non-prescription cosmetic creams",
+            "Avoid any manipulation and transfer the patient to terminal status"
+        ],
+        correct: 0,
+        explanation: "The standard requirement is to 'Swab the wound with gauze or a similar product and irrigate to remove deeper debris.'"
+    },
+    {
+        q: "What is the primary technical objective of the initial phase of wound bed preparation?",
+        options: [
+            "Debriding non-viable tissue to reduce the baseline risk of infection",
+            "Inducing structural cosmetic scar tissue formation within 12 hours",
+            "Eliminating the presence of any professional healthcare clinicians",
+            "Forcing the wound bed into a completely dry, desiccated status"
+        ],
+        correct: 0,
+        explanation: "Wound bed preparation focuses on 'Debriding it of non-viable tissue (for example, necrosis and slough) to reduce risk of infection'."
+    },
+    {
+        q: "What moisture state does the nurse try to manage via proper modern dressing application?",
+        options: [
+            "A completely flooded 'soupy' interstitial state",
+            "A balanced moist wound environment that avoids maceration or desiccation",
+            "A 100% dehydrated crystalline cell surface layer",
+            "A status completely unmonitored by serial baseline assessment forms"
+        ],
+        correct: 1,
+        explanation: "Wound care involves 'managing the moisture balance – rehydrating or reducing exudate levels to create a moist wound environment'."
+    },
+    {
+        q: "Which specific condition is listed as a major long-standing cause of chronic venous leg ulcers?",
+        options: [
+            "Venous insufficiency",
+            "Acute high-velocity sharp mechanical cuts",
+            "Superficial epidermal friction from dry blankets",
+            "Normal physiologic maturation phase pathways"
+        ],
+        correct: 0,
+        explanation: "The module states that chronic wounds requiring home care may be 'the consequence of long-standing chronic conditions, such as venous insufficiency.'"
+    },
+    {
+        q: "Providing wound care at home can induce what reaction among nonprofessional family caregivers?",
+        options: [
+            "A highly stressful experience filled with fear and concerns about safety",
+            "An immediate spontaneous mastery of all clinical surgical procedures",
+            "A total complete elimination of all personal family structures",
+            "Zero emotional reaction due to the simplistic nature of the guide"
+        ],
+        correct: 0,
+        explanation: "Providing wound care at home can be a stressful experience for nonprofessional caregivers, evoking fear and safety concerns."
+    },
+    {
+        q: "What critical clinical indicators should patients and home caregivers be trained to spot immediately?",
+        options: [
+            "Signs and symptoms of infections or complications",
+            "The exact layout of the Ministry of Health curriculum pages",
+            "The exact chemical formula of standard hydrogel dressing matrices",
+            "The nominal duration sequence of nursing level III modules"
+        ],
+        correct: 0,
+        explanation: "Caregivers 'need to learn how to identify normal wound healing as well as the signs and symptoms of infections or complications'."
+    },
+    {
+        q: "A nurse who explains the mechanics of wound bed preparation to a patient is performing:",
+        options: [
+            "An optional administrative step that has zero impact on outcomes",
+            "Patient education that is vital in impacting their healing outcome",
+            "A clear violation of professional relationship trust envelopes",
+            "A procedural error that increases localized tissue friction stress"
+        ],
+        correct: 1,
+        explanation: "Educating and explaining wound bed preparation to your patient is vital in impacting their healing outcome through enhanced adherence."
+    },
+    {
+        q: "What common emotional reactions do patients with open chronic wounds frequently encounter?",
+        options: [
+            "Feelings of fear, uncertainty, depression, and reduced self-image",
+            "An automatic permanent state of hyper-inflated clinical confidence",
+            "Spontaneous rapid loss of all adjacent deep sensory nerve sensations",
+            "Total uncompromised relaxation due to professional aseptic environments"
+        ],
+        correct: 0,
+        explanation: "The module reminds clinicians that 'Most patients have feelings of fear and uncertainty, and they may also experience feelings of depression and reduced self-image.'"
+    },
+    {
+        q: "What structural method can a physical therapist teach to help improve final scar appearance and mobility?",
+        options: [
+            "Scar mobilization techniques",
+            "Aggressive mechanical daily wet-to-dry ripping",
+            "Continuous application of tight non-adherent wet gauze rolls",
+            "Immersion of the scar line in boiling irrigation fluids"
+        ],
+        correct: 0,
+        explanation: "The curriculum notes that 'Scar mobilization techniques taught by a physical therapist may be helpful' during the maturation phase."
+    },
+    {
+        q: "What specific commercial cream is explicitly identified in the text as an option to improve overall skin appearance?",
+        options: [
+            "Mederma cream",
+            "Sussman ointment solution",
+            "Fikre Bojola complex antiseptic",
+            "Standard hydrofiber gel patch matrices"
+        ],
+        correct: 0,
+        explanation: "The textbook explicitly mentions: 'however Mederma cream can help to improve the overall appearance of the skin.'"
+    },
+    {
+        q: "If a patient experiences severe localized tissue maceration, what does this condition indicate about the dressing choice?",
+        options: [
+            "The dressing is failing to absorb the excess drainage effectively",
+            "The wound bed is completely too dry and requires added moisture gels",
+            "An optimal balanced primary intention healing has been achieved",
+            "The clean technique utilized was microbiologically contaminated"
+        ],
+        correct: 0,
+        explanation: "Maceration occurs when the surrounding skin is exposed to excessive moisture for too long, meaning an absorptive dressing is failing or required."
+    },
+    {
+        q: "The nominal duration assigned to the execution of this entire training curriculum guide is:",
+        options: [
+            "24 hours",
+            "50 hours",
+            "83 hours",
+            "120 hours"
+        ],
+        correct: 2,
+        explanation: "The cover page explicitly marks the Nominal duration as: 83hrs hours."
+    },
+    {
+        q: "Which ministry bodies collaborated directly to prepare and release this Wound Care module in August 2022?",
+        options: [
+            "Ministry of Labor and Skills & Ministry of Health - Ethiopia",
+            "Ministry of Education & National Nursing Association (NNA)",
+            "Jimma University Hospital Administrative Board exclusively",
+            "Addis Ababa Science and Technology Commission"
+        ],
+        correct: 0,
+        explanation: "The title page states it was prepared by the Ministry of Labor and Skills and Ministry of Health - Ethiopia."
+    },
+    {
+        q: "What curriculum framework version code does this specialized learning guide utilize?",
+        options: [
+            "Version 1, Based on January 2022 Curriculum",
+            "Version 5, Released in August 2023 Update",
+            "Version 3, Adapted from Australian Doctor references",
+            "Version 12, Level III Professional Blueprints"
+        ],
+        correct: 0,
+        explanation: "The front cover explicitly records: 'Based on January 2022 Curriculum, Version 1'."
+    },
+    {
+        q: "Which specific phase of wound healing is also clinically referred to as the 'regenerative' phase?",
+        options: [
+            "Inflammatory phase",
+            "Proliferative phase",
+            "Maturation phase",
+            "Destructive phase"
+        ],
+        correct: 1,
+        explanation: "The module summary explicitly correlates: 'Wound healing phases are Inflammatory (destructive), Proliferative (regenerative) and Maturation (reparative).'"
+    },
+    {
+        q: "The 'reparative' phase of human dermal tissue healing is technically known as the:",
+        options: [
+            "Maturation phase",
+            "Proliferative phase",
+            "Inflammatory phase",
+            "Exudative phase"
+        ],
+        correct: 0,
+        explanation: "The summary identifies the Maturation phase as the (reparative) phase of the healing timeline."
+    },
+    {
+        q: "The 'destructive' operational phase of healing is alternatively defined as the:",
+        options: [
+            "Inflammatory phase",
+            "Proliferative phase",
+            "Maturation phase",
+            "Granulation phase"
+        ],
+        correct: 0,
+        explanation: "The textbook summary aligns the Inflammatory phase directly with the term '(destructive)' phase."
+    },
+    {
+        q: "What is the primary consequence of leaving highly devitalized necrotic tissue within a chronic wound bed?",
+        options: [
+            "It acts as a focus for infection and blocks the normal healing cascade",
+            "It speeds up the rate of superficial epithelialization naturally",
+            "It automatically transitions the wound structure into primary intention status",
+            "It eliminates the patient's subjective requirement for pain medications"
+        ],
+        correct: 0,
+        explanation: "Necrotic tissue acts as a major extrinsic barrier that harbors bacteria, feeds infection, and mechanically arrests the proliferative phase."
+    },
+    {
+        q: "Which dressing type is specifically composed of foam layers designed to manage high volumes of wound exudate?",
+        options: [
+            "Foam dressings",
+            "Basic transparent adhesive sheets",
+            "Dry gauze strips exclusively",
+            "Cosmetic Mederma patches"
+        ],
+        correct: 0,
+        explanation: "Foam dressings are highly specialized advanced dressings used to absorb heavy exudates while maintaining a moist interface."
+    },
+    {
+        q: "Hydrogel dressings are primarily indicated for what type of wound bed status?",
+        options: [
+            "Heavily leaking, flooded, 'soupy' venous stasis ulcers",
+            "Dry or desiccated wound beds requiring added therapeutic moisture",
+            "wounds healing rapidly via uncomplicated primary intention line closure",
+            "Surgical incisions that require immediate high compression hemostasis"
+        ],
+        correct: 1,
+        explanation: "Hydrogels donate moisture to dry wound beds to rescue cells from desiccation and promote autolytic debridement."
+    }
+];
+
+// Generate the quiz into the DOM
+const container = document.getElementById('quiz-container');
+
+quizData.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    
+    const qText = document.createElement('div');
+    qText.className = 'question-text';
+    qText.innerText = `${index + 1}. ${item.q}`;
+    card.appendChild(qText);
+    
+    const optionsList = document.createElement('ul');
+    optionsList.className = 'options-list';
+    
+    item.options.forEach((opt, oIndex) => {
+        const li = document.createElement('li');
+        li.className = 'option-item';
+        li.innerText = opt;
+        
+        // Handle click event
+        li.addEventListener('click', () => {
+            // Disable further clicking on this specific question
+            const siblings = optionsList.querySelectorAll('.option-item');
+            siblings.forEach(el => el.classList.add('disabled'));
+            
+            // Check correctness
+            if (oIndex === item.correct) {
+                li.classList.add('correct');
+            } else {
+                li.classList.add('wrong');
+                // Highlight the correct answer as well
+                siblings[item.correct].classList.add('correct');
+            }
+            
+            // Show explanation box
+            explanationBox.style.display = 'block';
+        });
+        
+        optionsList.appendChild(li);
+    });
+    
+    card.appendChild(optionsList);
+    
+    const explanationBox = document.createElement('div');
+    explanationBox.className = 'explanation-box';
+    explanationBox.innerHTML = `<strong>Explanation:</strong> ${item.explanation}`;
+    card.appendChild(explanationBox);
+    
+    container.appendChild(card);
+});
+</script>
+
+</body>
+</html>
